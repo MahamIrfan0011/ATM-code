@@ -67,11 +67,13 @@ let transferAns = await inquirer.prompt([{
 }
 ]);
 
+
 let transferAmount = await inquirer.prompt([{
 
     name: "transfer",
     message: "please enter your amount",
-    type: "number",
+    type: "number"
+    
 }
 ]);
 
@@ -84,14 +86,36 @@ console.log(message1);
 console.log(message2);
 
 myBalance-= transferAmount.transfer
+let condition = true;
 
+let confirmAns = await inquirer.prompt([{
+
+    name: "confirm",
+    type: "confirm",
+    message: "Please answer with 'yes' or 'no' ",
+    default: "false"
+
+     
+},
+])
+if(confirmAns.confirm){
 console.log("Transaction has been completed");
 
 console.log(`Your remaining balance is: ${myBalance}`);
 
 }    
-    
-else if(operationAns.operation==="utility bill payment"){
+}else {
+    let operationAns = await inquirer.prompt([{
+
+        name: "operation",
+        message: "please select one of the below option",
+        type: "list",
+        choices: ["balance inquiry","cash withdraw","fund transfer","utility bill payment"]
+        
+      },
+    ]);
+} ;
+ if(operationAns.operation==="utility bill payment"){
     let consumerNumber = 39864421095463;    
 let billPaymentAns = await inquirer.prompt([{
     
@@ -123,17 +147,41 @@ console.log(message);
 console.log(message1);
 console.log(message2);
 console.log(message3);
+let condition = true;
 
+let confirmAns = await inquirer.prompt([{
+
+    name: "confirm",
+    type: "confirm",
+    message: "Please answer with 'yes' or 'no' ",
+    default: "false"
+
+     
+},
+])
+if(confirmAns.confirm){
 console.log("Your bill has been paid");
 myBalance-= billAmount 
 console.log(`Your remaining balance is ${myBalance}`);
 
-}   
-}
- else{
-     console.log("Incorrect pin number");
+ }else{
+     let operationAns = await inquirer.prompt([{
 
+         name: "operation",
+         message: "please select one of the below option",
+         type: "list",
+         choices: ["balance inquiry","cash withdraw","fund transfer","utility bill payment"]
+        
+       },
+     ]);
+ } ;
+}
+
+}else{
+    console.log("Incorrect pin code!")
  };
  
+ 
+
 
 
